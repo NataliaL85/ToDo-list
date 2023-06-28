@@ -13,6 +13,10 @@ div.textContent = today;
 const form = document.querySelector('#form');
 const taskInput = document.querySelector('#taskInput');
 const tasksList = document.querySelector('#tasksList');
+const btnAdd =document.querySelector('.btn-add');
+
+// btnAdd.disabled = true
+
 
 let tasks = []
 
@@ -33,6 +37,11 @@ function addTask(e){
     e.preventDefault();
 
     const textTask = taskInput.value;
+
+
+    if (!textTask) {
+        return
+    }
 
     const newTask = {
         id: Date.now(),
@@ -91,7 +100,8 @@ function saveToLs(){
     localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
-function renderTask(el) {
+function renderTask(el) { 
+
     const cssClass = el.done ? 'item-title item-title--done' : 'item-title'
     
     const taskHtml = `
